@@ -45,5 +45,6 @@ gfsh << EOF
    start server ${DEFAULT_SERVER_MEMORY} ${DEFAULT_JVM_OPTS} --name=server1 --locators=localhost[10334] --dir=${APP_HOME}/data/server1 --server-port=0
    start server ${DEFAULT_SERVER_MEMORY} ${DEFAULT_JVM_OPTS} --name=server2 --locators=localhost[10334] --dir=${APP_HOME}/data/server2 --server-port=0
 
+    create region --name=myRegion --type=PARTITION
 EOF
 
