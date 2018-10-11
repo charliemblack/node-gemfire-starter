@@ -39,8 +39,8 @@ wget https://s3.amazonaws.com/gemfire-field/pivotal-gemfire-9.6.0.tgz
 tar xzvf pivotal-gemfire-native-9.2.1-build.10-Linux-64bit.tar.gz
 tar xzvf pivotal-gemfire-9.6.0.tgz
 
-echo 'export GFCPP=${APP_HOME}/gemfire/pivotal-gemfire-native' >> ~/.profile
-echo 'export GEMFIRE=${APP_HOME}/gemfire/pivotal-gemfire-9.6.0' >> ~/.profile
+echo "export GFCPP=${APP_HOME}/gemfire/pivotal-gemfire-native" >> ~/.profile
+echo "export GEMFIRE=${APP_HOME}/gemfire/pivotal-gemfire-9.6.0" >> ~/.profile
 echo 'export PATH=${GEMFIRE}/bin:${PATH}' >> ~/.profile
 echo 'export LIBRARY_PATH=${GFCPP}/lib:$LIBRARY_PATH' >> ~/.profile
 
