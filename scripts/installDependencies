@@ -42,7 +42,7 @@ tar xzvf pivotal-gemfire-9.6.0.tgz
 echo "export GFCPP=${APP_HOME}/gemfire/pivotal-gemfire-native" >> ~/.profile
 echo "export GEMFIRE=${APP_HOME}/gemfire/pivotal-gemfire-9.6.0" >> ~/.profile
 echo 'export PATH=${GEMFIRE}/bin:${PATH}' >> ~/.profile
-echo 'export LIBRARY_PATH=${GFCPP}/lib:$LIBRARY_PATH' >> ~/.profile
+echo 'export LD_LIBRARY_PATH=${GFCPP}/lib:$LIBRARY_PATH' >> ~/.profile
 
 . ~/.profile
 

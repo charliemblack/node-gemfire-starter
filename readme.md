@@ -67,3 +67,9 @@ region.put('foo', { bar: ['baz', 'qux'] }, function(error) {
 ``npm install gemfire``
 ## Step TWO run the sample application
 ``node test.js``
+
+That is it!  Have fun.
+
+# Command history from AWS
+```
+```
