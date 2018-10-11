@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Attempt to set APP_HOME
+# Resolve links: $0 may be a link
+PRG="$0"
+# Need this for relative symlinks.
+while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+        PRG="$link"
+    else
+        PRG=`dirname "$PRG"`"/$link"
+    fi
+done
+SAVED="`pwd`"
+cd "`dirname \"$PRG\"`/.." >&-
+APP_HOME="`pwd -P`"
+cd "$SAVED" >&-
+
+# Install Node
+sudo apt-get update
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Install Java
+sudo apt-add-repository -y ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get -y install openjdk-8-jdk 
+
+pushd ${APP_HOME}
+
+# Install GemFire
+mkdir gemfire
+cd gemfire
+wget https://s3.amazonaws.com/gemfire-field/pivotal-gemfire-native-9.2.1-build.10-Linux-64bit.tar.gz
+wget https://s3.amazonaws.com/gemfire-field/pivotal-gemfire-9.6.0.tgz
+
+tar xzvf pivotal-gemfire-native-9.2.1-build.10-Linux-64bit.tar.gz
+tar xzvf pivotal-gemfire-9.6.0.tgz
+
+echo 'export GFCPP=${APP_HOME}/gemfire/pivotal-gemfire-native' >> ~/.profile
+echo 'export GEMFIRE=${APP_HOME}/gemfire/pivotal-gemfire-9.6.0' >> ~/.profile
+echo 'export PATH=${GEMFIRE}/bin:${PATH}' >> ~/.profile
+echo 'export LIBRARY_PATH=${GFCPP}/lib:$LIBRARY_PATH' >> ~/.profile
+
+. ~/.profile
+
+popd
+
+gfsh version

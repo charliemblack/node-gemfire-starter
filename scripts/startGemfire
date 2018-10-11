@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Attempt to set APP_HOME
+# Resolve links: $0 may be a link
+PRG="$0"
+# Need this for relative symlinks.
+while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+        PRG="$link"
+    else
+        PRG=`dirname "$PRG"`"/$link"
+    fi
+done
+SAVED="`pwd`"
+cd "`dirname \"$PRG\"`/.." >&-
+APP_HOME="`pwd -P`"
+cd "$SAVED" >&-
+
+DEFAULT_LOCATOR_MEMORY="--initial-heap=128m --max-heap=128m"
+
+DEFAULT_SERVER_MEMORY="--initial-heap=2g --max-heap=2g"
+
+DEFAULT_JVM_OPTS=" --J=-XX:+UseParNewGC"
+DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS --J=-XX:+UseConcMarkSweepGC"
+DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS --J=-XX:CMSInitiatingOccupancyFraction=50"
+DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS --J=-XX:+CMSParallelRemarkEnabled"
+DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS --J=-XX:+UseCMSInitiatingOccupancyOnly"
+DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS --J=-XX:+ScavengeBeforeFullGC"
+DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS --J=-XX:+CMSScavengeBeforeRemark"
+DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS --J=-XX:+UseCompressedOops"
+DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS --mcast-port=0"
+
+mkdir -p ${APP_HOME}/data/locator
+mkdir -p ${APP_HOME}/data/server1
+mkdir -p ${APP_HOME}/data/server2
+
+
+gfsh << EOF
+   start locator ${DEFAULT_LOCATOR_MEMORY} ${DEFAULT_JVM_OPTS} --name=locator --port=10334 --dir=${APP_HOME}/data/locator
+
+   configure pdx --read-serialized=true 
+
+   start server ${DEFAULT_SERVER_MEMORY} ${DEFAULT_JVM_OPTS} --name=server1 --locators=localhost[10334] --dir=${APP_HOME}/data/server1 --server-port=0
+   start server ${DEFAULT_SERVER_MEMORY} ${DEFAULT_JVM_OPTS} --name=server2 --locators=localhost[10334] --dir=${APP_HOME}/data/server2 --server-port=0
+
+EOF
+
