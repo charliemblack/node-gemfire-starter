@@ -1,8 +1,8 @@
-This starter app shows what one would have todo to get a Sample NodeJS application to use GemFire.   I used a cloud vm to try this out, so your scripts may or may not line up 100%.   Specifically I used ubuntu-trusty-14.04-amd64-server on AWS.
+This starter app shows what one would have todo to get a Sample NodeJS application to use GemFire.   I used a cloud vm to try this out, your scripts may or may not line up 100% if you are using a different cloud vm/provider.   Specifically I used ubuntu-trusty-14.04-amd64-server on AWS.
 
 # Installing the prerequisites
 
-To make this as simple as possible I have created a script that will install all of the dependancies for Node, Java and GemFire.   This script was tested to run on a AWS ubuntu-trusty-14.04-amd64-server image.
+ I have created a script that will install all of the dependancies for Node, Java and GemFire.   This script was tested to run on a AWS ubuntu-trusty-14.04-amd64-server image.
 
 * [installDependencies](scripts/installDependencies)
 
@@ -32,8 +32,8 @@ tar xzvf pivotal-gemfire-9.6.0.tgz
 ```
 **Configure Environment Paths**
 ```
-echo 'export GFCPP=${APP_HOME}/gemfire/pivotal-gemfire-native' >> ~/.profile
-echo 'export GEMFIRE=${APP_HOME}/gemfire/pivotal-gemfire-9.6.0' >> ~/.profile
+echo "export GFCPP=${APP_HOME}/gemfire/pivotal-gemfire-native" >> ~/.profile
+echo "export GEMFIRE=${APP_HOME}/gemfire/pivotal-gemfire-9.6.0" >> ~/.profile
 echo 'export PATH=${GEMFIRE}/bin:${PATH}' >> ~/.profile
 echo 'export LIBRARY_PATH=${GFCPP}/lib:$LIBRARY_PATH' >> ~/.profile
 ```
