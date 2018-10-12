@@ -68,8 +68,19 @@ region.put('foo', { bar: ['baz', 'qux'] }, function(error) {
 ## Step TWO run the sample application
 ``node test.js``
 
-That is it!  Have fun.
+That is it!  Have fun and let me know what you make with it.
 
 # Command history from AWS
 ```
+ubuntu@ip-172-31-15-238:~/node-gemfire-starter$ history
+    1  sudo apt-get install -y git
+    2  git clone https://github.com/charliemblack/node-gemfire-starter.git
+    3  cd node-gemfire-starter/
+    4  scripts/installDependencies 
+    5  gfsh
+    6  . ~/.profile 
+    7  scripts/startGemfire 
+    8  npm install gemfire
+    9  node test.js 
+   10  history
 ```
