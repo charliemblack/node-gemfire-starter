@@ -65,7 +65,7 @@ region.put('foo', { bar: ['baz', 'qux'] }, function(error) {
 ``scripts/startGemfire``
 ## Step TWO Install node-gemfire
 ``npm install gemfire``
-## Step TWO run the sample application
+## Step THREE run the sample application
 ``node test.js``
 
 That is it!  Have fun and let me know what you make with it.
